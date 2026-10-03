@@ -125,53 +125,53 @@ export const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 md:py-32 bg-white border-b border-slate-200/80 relative overflow-hidden">
+    <section id="about" className="py-10 sm:py-14 md:py-18 lg:py-24 bg-white border-b border-slate-200/80 relative overflow-hidden">
       {/* Background ambient gradient */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-48 bg-gradient-to-b from-emerald-50/50 to-transparent pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
-        {/* Section Header with Large Typography */}
-        <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
-          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-4">
+        {/* Section Header with Responsive Typography */}
+        <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-12">
+          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-2.5 sm:mb-3">
             {t('aboutBadge')}
           </Badge>
-          <h2 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-[1.12]">
+          <h2 className="font-heading font-extrabold text-2xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight leading-[1.15]">
             {t('aboutHeading')}
           </h2>
         </div>
 
         {/* Scroll Reveal Description */}
-        <div className="mb-20 sm:mb-24 text-center">
+        <div className="mb-12 sm:mb-16 text-center">
           <ScrollRevealText paragraphs={descriptionParagraphs} />
         </div>
 
         {/* Target Stakeholders */}
-        <div className="pt-10 border-t border-slate-100">
-          <div className="text-center mb-10">
+        <div className="pt-8 sm:pt-10 border-t border-slate-100">
+          <div className="text-center mb-6 sm:mb-8">
             <span className="text-xs uppercase font-mono tracking-widest font-bold text-slate-500">
               Who This Field Study Serves
             </span>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {targetAudiences.map((aud) => {
               const Icon = aud.icon;
               return (
                 <Card key={aud.title} className="bg-slate-50/60 border-slate-200 shadow-none hover:shadow-xs transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-10 h-10 rounded-lg bg-emerald-100/80 flex items-center justify-center text-emerald-800">
-                        <Icon className="w-5 h-5" />
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex items-center justify-between mb-3 sm:mb-4">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-emerald-100/80 flex items-center justify-center text-emerald-800">
+                        <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
-                      <Badge variant="outline" className="text-[11px] font-sans border-slate-300 text-slate-700">
+                      <Badge variant="outline" className="text-[10px] sm:text-[11px] font-sans border-slate-300 text-slate-700">
                         {aud.badge}
                       </Badge>
                     </div>
-                    <h3 className="font-heading font-bold text-lg text-slate-900">
+                    <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900">
                       {aud.title}
                     </h3>
-                    <p className="mt-2 text-sm text-slate-600 leading-relaxed font-normal">
+                    <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                       {aud.desc}
                     </p>
                   </CardContent>

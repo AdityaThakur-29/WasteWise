@@ -313,6 +313,11 @@ export const CometCursor: React.FC<CometCursorProps> = ({
 
   if (!mounted || typeof document === 'undefined') return null;
 
+  // On touch / coarse pointer devices, do not render to optimize performance and prevent touch scroll traps
+  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
+    return null;
+  }
+
   const canvasStyle: React.CSSProperties = {
     position: 'fixed',
     top: 0,
@@ -325,12 +330,12 @@ export const CometCursor: React.FC<CometCursorProps> = ({
     <div
       style={{
         position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
+        inset: 0,
+        width: '100%',
+        height: '100%',
         pointerEvents: 'none',
         zIndex: Number(layer) || 9999,
+        overflow: 'hidden',
       }}
     >
       <canvas

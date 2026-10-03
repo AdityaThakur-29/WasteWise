@@ -71,32 +71,32 @@ export const CampaignSection: React.FC = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-radial from-emerald-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
+    <section className="py-10 sm:py-16 md:py-20 bg-radial from-emerald-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-600/10 blur-[140px] pointer-events-none rounded-full" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 text-xs uppercase font-mono tracking-wider px-3 py-1 mb-3">
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
+          <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 text-xs uppercase font-mono tracking-wider px-3 py-1 mb-2.5 sm:mb-3">
             Civic Action Initiative
           </Badge>
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white">
+          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl tracking-tight text-white">
             Separate Today, Cleaner Tomorrow
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
+          <p className="mt-2.5 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed px-1 sm:px-0">
             The civic awareness campaign tailored directly to address the barriers identified in our Mumbai field survey.
           </p>
         </div>
 
         {/* Campaign Poster & Interactive Quiz Grid */}
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
+        <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
           
           {/* Campaign Poster Showcase */}
-          <div className="lg:col-span-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div className="lg:col-span-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 sm:p-6 lg:p-8 flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <Badge variant="outline" className="border-emerald-400 text-emerald-300 text-xs font-mono">
                   Official Campaign Kit
                 </Badge>
@@ -107,76 +107,76 @@ export const CampaignSection: React.FC = () => {
               </div>
 
               {/* Poster Art Card */}
-              <div className="bg-gradient-to-br from-emerald-800 to-teal-900 rounded-xl p-6 text-white text-center border border-emerald-600/30 shadow-lg relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-10 font-heading font-extrabold text-8xl">
+              <div className="bg-gradient-to-br from-emerald-800 to-teal-900 rounded-xl p-4 sm:p-6 text-white text-center border border-emerald-600/30 shadow-lg relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-10 font-heading font-extrabold text-7xl sm:text-8xl">
                   ♻
                 </div>
-                <span className="text-xs uppercase tracking-widest font-mono text-emerald-200">
+                <span className="text-[10px] sm:text-xs uppercase tracking-widest font-mono text-emerald-200">
                   WasteWise Community Drive
                 </span>
-                <h3 className="font-heading font-extrabold text-2xl sm:text-3xl text-white mt-2 leading-tight">
+                <h3 className="font-heading font-extrabold text-xl sm:text-2xl lg:text-3xl text-white mt-1.5 sm:mt-2 leading-tight">
                   "One Small Bin at Home,<br />A Cleaner City for All."
                 </h3>
-                <p className="text-xs text-emerald-100/80 mt-3 max-w-md mx-auto">
+                <p className="text-[11px] sm:text-xs text-emerald-100/80 mt-2 sm:mt-3 max-w-md mx-auto">
                   Over 55% of our neighbors already segregate. Join the movement to make dual-bin disposal universal in your society today.
                 </p>
 
-                <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-                  <div className="px-3 py-1.5 bg-white/10 rounded-lg text-[11px] font-medium border border-white/20">
+                <div className="mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-2">
+                  <div className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-white/10 rounded-lg text-[10px] sm:text-[11px] font-medium border border-white/20">
                     🟢 Green = Wet Food Scraps
                   </div>
-                  <div className="px-3 py-1.5 bg-white/10 rounded-lg text-[11px] font-medium border border-white/20">
+                  <div className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-white/10 rounded-lg text-[10px] sm:text-[11px] font-medium border border-white/20">
                     🔵 Blue = Dry Clean Recyclables
                   </div>
                 </div>
               </div>
 
               {/* Campaign Features */}
-              <div className="mt-6 grid sm:grid-cols-2 gap-3 text-xs text-slate-300">
-                <div className="p-3 bg-white/5 rounded-lg border border-white/10 flex items-start gap-2">
+              <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 text-xs text-slate-300">
+                <div className="p-2.5 sm:p-3 bg-white/5 rounded-lg border border-white/10 flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                   <span>College notice board posters ready for print</span>
                 </div>
-                <div className="p-3 bg-white/5 rounded-lg border border-white/10 flex items-start gap-2">
+                <div className="p-2.5 sm:p-3 bg-white/5 rounded-lg border border-white/10 flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                   <span>WhatsApp society group shareable graphics</span>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+            <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <Button
                 asChild
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs h-10 px-4 gap-1.5 cursor-pointer"
+                className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs h-10 px-4 gap-1.5 cursor-pointer"
               >
                 <a href="#awareness">
                   Start Segregating Today
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </Button>
-              <span className="text-[11px] text-slate-400 font-mono">
+              <span className="text-[10px] sm:text-[11px] text-slate-400 font-mono text-center sm:text-right">
                 Hashtag: #SeparateTodayMumbai
               </span>
             </div>
           </div>
 
           {/* Interactive 3-Question Segregation Quiz */}
-          <div className="lg:col-span-6 bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8">
+          <div className="lg:col-span-6 bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-6 lg:p-8">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
                   <Award className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-heading font-bold text-base text-white">
+                  <h4 className="font-heading font-bold text-sm sm:text-base text-white">
                     Segregation Knowledge Check
                   </h4>
-                  <p className="text-[11px] text-slate-400">
+                  <p className="text-[10px] sm:text-[11px] text-slate-400">
                     Test your everyday disposal knowledge in 3 quick questions
                   </p>
                 </div>
               </div>
-              <Badge variant="outline" className="font-mono text-xs border-emerald-500/50 text-emerald-300">
+              <Badge variant="outline" className="font-mono text-xs border-emerald-500/50 text-emerald-300 shrink-0">
                 {!quizFinished ? `Q ${currentQ + 1} of ${quizQuestions.length}` : 'Completed'}
               </Badge>
             </div>

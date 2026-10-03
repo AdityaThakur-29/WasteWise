@@ -98,71 +98,71 @@ export const MethodologySection: React.FC<MethodologyProps> = ({
   };
 
   return (
-    <section id="methodology" className="py-16 md:py-24 bg-white border-b border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="methodology" className="py-10 sm:py-16 md:py-20 bg-white border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-3">
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
+          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-2.5 sm:mb-3">
             Academic Transparency & Ethics
           </Badge>
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 tracking-tight">
             Survey Methodology & Data Transparency
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+          <p className="mt-2.5 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-normal px-1 sm:px-0">
             Following academic data ethics, all metrics presented on this platform are computed from real primary survey entries without alteration, extrapolation, or simulated numbers.
           </p>
         </div>
 
         {/* Methodology Metadata Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
-            <span className="text-[11px] font-mono uppercase text-slate-500 font-semibold block">Instrument</span>
-            <div className="font-heading font-bold text-base text-slate-900 mt-1">{metadata.instrument}</div>
-            <div className="text-xs text-slate-500 mt-0.5">24 structured analytical items</div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mb-8 sm:mb-12">
+          <div className="p-3 sm:p-4 bg-slate-50 rounded-xl border border-slate-200">
+            <span className="text-[10px] sm:text-[11px] font-mono uppercase text-slate-500 font-semibold block">Instrument</span>
+            <div className="font-heading font-bold text-sm sm:text-base text-slate-900 mt-1">{metadata.instrument}</div>
+            <div className="text-[10px] sm:text-xs text-slate-500 mt-0.5">24 structured items</div>
           </div>
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
-            <span className="text-[11px] font-mono uppercase text-slate-500 font-semibold block">Study Geography</span>
-            <div className="font-heading font-bold text-base text-slate-900 mt-1">{metadata.study_area}</div>
-            <div className="text-xs text-slate-500 mt-0.5">Suburban & urban community zones</div>
+          <div className="p-3 sm:p-4 bg-slate-50 rounded-xl border border-slate-200">
+            <span className="text-[10px] sm:text-[11px] font-mono uppercase text-slate-500 font-semibold block">Geography</span>
+            <div className="font-heading font-bold text-sm sm:text-base text-slate-900 mt-1">{metadata.study_area}</div>
+            <div className="text-[10px] sm:text-xs text-slate-500 mt-0.5">MMR community zones</div>
           </div>
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
-            <span className="text-[11px] font-mono uppercase text-slate-500 font-semibold block">Total Dataset</span>
-            <div className="font-heading font-bold text-base text-slate-900 mt-1">
-              {metadata.total_submissions} Field Responses
+          <div className="p-3 sm:p-4 bg-slate-50 rounded-xl border border-slate-200">
+            <span className="text-[10px] sm:text-[11px] font-mono uppercase text-slate-500 font-semibold block">Total Dataset</span>
+            <div className="font-heading font-bold text-sm sm:text-base text-slate-900 mt-1">
+              {metadata.total_submissions} Responses
             </div>
-            <div className="text-xs text-slate-500 mt-0.5">Primary household survey records</div>
+            <div className="text-[10px] sm:text-xs text-slate-500 mt-0.5">Primary household records</div>
           </div>
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
-            <span className="text-[11px] font-mono uppercase text-slate-500 font-semibold block">Fieldwork Period</span>
-            <div className="font-heading font-bold text-base text-slate-900 mt-1">{metadata.study_period}</div>
-            <div className="text-xs text-slate-500 mt-0.5">Primary respondent submissions</div>
+          <div className="p-3 sm:p-4 bg-slate-50 rounded-xl border border-slate-200">
+            <span className="text-[10px] sm:text-[11px] font-mono uppercase text-slate-500 font-semibold block">Fieldwork</span>
+            <div className="font-heading font-bold text-sm sm:text-base text-slate-900 mt-1">{metadata.study_period}</div>
+            <div className="text-[10px] sm:text-xs text-slate-500 mt-0.5">Verified submissions</div>
           </div>
         </div>
 
         {/* Academic Disclosure Alert */}
-        <div className="mb-12 p-5 bg-emerald-50/60 border border-emerald-200 rounded-xl flex items-start gap-3.5 text-xs text-slate-700">
+        <div className="mb-8 sm:mb-12 p-4 sm:p-5 bg-emerald-50/60 border border-emerald-200 rounded-xl flex items-start gap-3 sm:gap-3.5 text-xs text-slate-700">
           <ShieldCheck className="w-5 h-5 text-emerald-800 shrink-0 mt-0.5" />
           <div className="space-y-1">
             <strong className="text-emerald-950 font-bold block text-sm">
               Academic Data Integrity Commitment
             </strong>
-            <p className="leading-relaxed">
+            <p className="leading-relaxed text-[11px] sm:text-xs">
               In accordance with research standards, findings reflect the responses of surveyed households within the Mumbai metropolitan study area. All <strong>{metadata.total_submissions} collected survey records</strong> are processed and presented in full across every visualization, dashboard metric, and the raw data viewer below.
             </p>
           </div>
         </div>
 
         {/* Interactive Raw Data Table Section */}
-        <Card className="border-slate-200 shadow-xs overflow-hidden">
+        <Card className="border-slate-200 shadow-2xs overflow-hidden">
           <CardHeader className="bg-slate-50/60 border-b border-slate-200 p-4 sm:p-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
               <div>
-                <CardTitle className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                <CardTitle className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
                   <Database className="w-4 h-4 text-emerald-700" />
                   Raw Field Survey Data Viewer
                 </CardTitle>
-                <CardDescription className="text-xs text-slate-500 mt-1">
+                <CardDescription className="text-xs text-slate-500 mt-0.5 sm:mt-1">
                   Search, inspect, and verify all collected survey records
                 </CardDescription>
               </div>
@@ -173,7 +173,7 @@ export const MethodologySection: React.FC<MethodologyProps> = ({
                   onClick={handleDownloadCSV}
                   variant="outline"
                   size="sm"
-                  className="bg-white border-slate-300 text-slate-700 hover:text-emerald-800 text-xs font-medium gap-1.5 cursor-pointer shadow-2xs"
+                  className="bg-white border-slate-300 text-slate-700 hover:text-emerald-800 text-xs font-medium gap-1.5 cursor-pointer shadow-2xs h-9"
                 >
                   <Download className="w-3.5 h-3.5 text-emerald-700" />
                   Download CSV
@@ -182,7 +182,7 @@ export const MethodologySection: React.FC<MethodologyProps> = ({
                   onClick={handleDownloadJSON}
                   variant="outline"
                   size="sm"
-                  className="bg-white border-slate-300 text-slate-700 hover:text-emerald-800 text-xs font-medium gap-1.5 cursor-pointer shadow-2xs"
+                  className="bg-white border-slate-300 text-slate-700 hover:text-emerald-800 text-xs font-medium gap-1.5 cursor-pointer shadow-2xs h-9"
                 >
                   <Download className="w-3.5 h-3.5 text-emerald-700" />
                   Export JSON
@@ -191,7 +191,7 @@ export const MethodologySection: React.FC<MethodologyProps> = ({
             </div>
 
             {/* Filter and Search Bar */}
-            <div className="mt-4 pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3">
               <div className="relative w-full sm:w-72">
                 <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
@@ -203,15 +203,20 @@ export const MethodologySection: React.FC<MethodologyProps> = ({
                 />
               </div>
 
-              <div className="text-xs text-slate-600 font-mono">
+              <div className="text-[11px] sm:text-xs text-slate-600 font-mono">
                 Showing <strong>{filteredData.length}</strong> of {records.length} collected records
               </div>
             </div>
           </CardHeader>
 
-          {/* Table Container */}
-          <CardContent className="p-0 overflow-x-auto">
-            <Table>
+          {/* Mobile swipe hint */}
+          <div className="sm:hidden px-4 py-1.5 bg-slate-100/70 border-b border-slate-200 text-[10px] text-slate-500 font-mono flex items-center justify-center">
+            <span>← Swipe table horizontally to inspect columns →</span>
+          </div>
+
+          {/* Table Container with safe min-width */}
+          <CardContent className="p-0 overflow-x-auto w-full max-w-full">
+            <Table className="min-w-[680px]">
               <TableHeader className="bg-slate-50/80 text-[11px] font-mono">
                 <TableRow>
                   <TableHead className="w-14">#ID</TableHead>
@@ -269,7 +274,7 @@ export const MethodologySection: React.FC<MethodologyProps> = ({
           </CardContent>
 
           {/* Table Footer with Pagination */}
-          <div className="p-4 bg-slate-50/60 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+          <div className="p-3 sm:p-4 bg-slate-50/60 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-[11px] sm:text-xs text-slate-500">
             <div>
               Showing {((currentPage - 1) * rowsPerPage) + 1} to {Math.min(currentPage * rowsPerPage, filteredData.length)} of {filteredData.length} records
             </div>

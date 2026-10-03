@@ -161,24 +161,24 @@ export const AwarenessHub: React.FC = () => {
   const CurrentIcon = currentCat.icon;
 
   return (
-    <section id="awareness" className="py-16 md:py-24 bg-white border-b border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="awareness" className="py-10 sm:py-16 md:py-20 bg-white border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-3">
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
+          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-2.5 sm:mb-3">
             Civic Education Toolkit
           </Badge>
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 tracking-tight">
             Awareness Hub & Segregation Guide
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+          <p className="mt-2.5 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-normal px-1 sm:px-0">
             Practical, visual, and immediately actionable rules. Discover what goes where, how to prep materials, and how to eliminate contamination.
           </p>
         </div>
 
         {/* 4 Category Switcher */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 mb-6 sm:mb-8">
           {(Object.keys(categories) as Array<keyof typeof categories>).map((catKey) => {
             const cat = categories[catKey];
             const Icon = cat.icon;
@@ -187,19 +187,19 @@ export const AwarenessHub: React.FC = () => {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(catKey)}
-                className={`p-4 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                className={`p-3 sm:p-4 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
                   isSelected 
                     ? 'border-emerald-600 bg-emerald-50/70 shadow-2xs ring-2 ring-emerald-600/20' 
                     : 'border-slate-200 bg-white hover:bg-slate-50'
                 }`}
               >
-                <div className="flex items-center justify-between mb-2">
-                  <Icon className={`w-5 h-5 ${isSelected ? 'text-emerald-800' : 'text-slate-500'}`} />
-                  <Badge variant="outline" className="text-[10px] font-mono">
+                <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                  <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${isSelected ? 'text-emerald-800' : 'text-slate-500'}`} />
+                  <Badge variant="outline" className="text-[9px] sm:text-[10px] font-mono px-1.5 py-0.5">
                     {cat.badge}
                   </Badge>
                 </div>
-                <div className={`font-heading font-bold text-sm ${isSelected ? 'text-emerald-950 font-extrabold' : 'text-slate-800'}`}>
+                <div className={`font-heading font-bold text-xs sm:text-sm ${isSelected ? 'text-emerald-950 font-extrabold' : 'text-slate-800'}`}>
                   {cat.title}
                 </div>
               </button>
@@ -208,30 +208,30 @@ export const AwarenessHub: React.FC = () => {
         </div>
 
         {/* Active Category Deep Dive Card */}
-        <Card className="border-slate-200 shadow-xs mb-16 overflow-hidden">
-          <div className="p-6 sm:p-8 bg-slate-50/60 border-b border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <Card className="border-slate-200 shadow-2xs mb-10 sm:mb-16 overflow-hidden">
+          <div className="p-4 sm:p-6 lg:p-8 bg-slate-50/60 border-b border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-emerald-800 shadow-2xs">
-                <CurrentIcon className="w-6 h-6" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-emerald-800 shadow-2xs shrink-0">
+                <CurrentIcon className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div>
-                <h3 className="font-heading font-bold text-xl text-slate-900">
+                <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900">
                   {currentCat.title}
                 </h3>
-                <p className="text-xs text-slate-600 mt-0.5 max-w-xl">
+                <p className="text-[11px] sm:text-xs text-slate-600 mt-0.5 max-w-xl">
                   {currentCat.desc}
                 </p>
               </div>
             </div>
-            <Badge className="bg-emerald-800 text-white font-mono text-xs px-3 py-1 self-start sm:self-auto">
+            <Badge className="bg-emerald-800 text-white font-mono text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 self-start sm:self-auto shrink-0">
               Designated: {currentCat.badge}
             </Badge>
           </div>
 
-          <CardContent className="p-6 sm:p-8 grid md:grid-cols-2 gap-8">
+          <CardContent className="p-4 sm:p-6 lg:p-8 grid md:grid-cols-2 gap-6 sm:gap-8">
             {/* Allowed items */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-emerald-800 font-heading font-bold text-sm">
+              <div className="flex items-center gap-2 text-emerald-800 font-heading font-bold text-xs sm:text-sm">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 What Belongs Here (DO Put)
               </div>

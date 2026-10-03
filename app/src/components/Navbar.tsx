@@ -157,31 +157,31 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-3 z-50 flex justify-center px-4 py-2 pointer-events-auto">
+    <header className="sticky top-2 sm:top-3 z-50 flex justify-center px-2.5 sm:px-4 py-1.5 sm:py-2 pointer-events-auto">
       <div className="w-full max-w-7xl">
         <motion.div
           layout
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="relative rounded-3xl border border-slate-200/80 bg-white/95 backdrop-blur-md shadow-[0_2px_4px_rgba(0,0,0,0.03),0_12px_32px_-8px_rgba(0,0,0,0.08)]"
+          className="relative rounded-2xl sm:rounded-3xl border border-slate-200/80 bg-white/95 backdrop-blur-md shadow-[0_2px_4px_rgba(0,0,0,0.03),0_12px_32px_-8px_rgba(0,0,0,0.08)]"
         >
           {/* Top row */}
-          <div className="flex items-center justify-between gap-4 px-5 py-3 sm:px-7">
-            {/* Logo without Field Data badge */}
-            <a href="#hero" className="flex shrink-0 items-center gap-2.5 group cursor-pointer">
-              <div className="w-10 h-10 rounded-2xl bg-emerald-800 flex items-center justify-center text-white shadow-xs group-hover:bg-emerald-700 transition-colors">
-                <Recycle className="w-5 h-5 text-emerald-300" />
+          <div className="flex items-center justify-between gap-2.5 sm:gap-4 px-3.5 py-2.5 sm:px-7 sm:py-3">
+            {/* Logo */}
+            <a href="#hero" className="flex shrink-0 items-center gap-2 group cursor-pointer">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-emerald-800 flex items-center justify-center text-white shadow-xs group-hover:bg-emerald-700 transition-colors">
+                <Recycle className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300" />
               </div>
               <div>
-                <span className="font-heading font-extrabold text-xl tracking-tight text-slate-900 block leading-tight">
+                <span className="font-heading font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 block leading-tight">
                   WasteWise
                 </span>
-                <p className="text-[11px] font-sans text-slate-500 font-medium hidden sm:block">
+                <p className="text-[10px] sm:text-[11px] font-sans text-slate-500 font-medium hidden sm:block">
                   {t('navMumbai')}
                 </p>
               </div>
             </a>
 
-            {/* Desktop nav with anelkabag animated triggers */}
+            {/* Desktop nav with animated triggers */}
             <nav className="hidden items-center gap-1.5 md:flex">
               {navItems.map((item) => {
                 const isOpen = openMenu === item.key;
@@ -207,7 +207,7 @@ export function Navbar() {
               })}
             </nav>
 
-            {/* Right actions */}
+            {/* Right actions (desktop) */}
             <div className="hidden shrink-0 items-center gap-2.5 sm:flex">
               {/* Language switcher */}
               <div className="relative z-50" ref={langRef}>
@@ -274,14 +274,55 @@ export function Navbar() {
               </a>
             </div>
 
-            {/* Mobile trigger */}
-            <button
-              onClick={() => setMobileOpen((v) => !v)}
-              className="flex items-center justify-center rounded-full p-2 text-slate-700 md:hidden cursor-pointer"
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            {/* Mobile trigger & quick actions */}
+            <div className="flex items-center gap-1.5 md:hidden">
+              {/* Quick Language switcher on mobile */}
+              <div className="relative" ref={langRef}>
+                <button
+                  onClick={() => {
+                    setOpenMenu(null);
+                    setLangOpen((v) => !v);
+                  }}
+                  className="flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold text-slate-700 border border-slate-200/90 bg-slate-50 cursor-pointer"
+                >
+                  <Languages className="h-3 w-3 text-emerald-700" />
+                  <span>{language}</span>
+                </button>
+
+                <AnimatePresence>
+                  {langOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                      className="absolute right-0 top-full z-[100] mt-2 w-36 overflow-hidden rounded-xl border border-slate-200 bg-white p-1 shadow-lg"
+                    >
+                      {LANGUAGES.map((lng) => (
+                        <button
+                          key={lng.code}
+                          onClick={() => {
+                            setLanguage(lng.code);
+                            setLangOpen(false);
+                          }}
+                          className="flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 text-left text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 cursor-pointer"
+                        >
+                          <span>{lng.label} ({lng.code})</span>
+                          {lng.code === language && <Check className="h-3 w-3 text-emerald-700" />}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <button
+                onClick={() => setMobileOpen((v) => !v)}
+                className="flex items-center justify-center rounded-full p-1.5 text-slate-700 hover:bg-slate-100 cursor-pointer"
+                aria-label="Toggle menu"
+              >
+                {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
           </div>
 
           {/* Desktop mega dropdown */}

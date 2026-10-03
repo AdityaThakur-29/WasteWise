@@ -92,28 +92,28 @@ export const OptimizationPlan: React.FC = () => {
   ];
 
   return (
-    <section id="optimization" className="py-16 md:py-24 bg-slate-50/60 border-b border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="optimization" className="py-10 sm:py-16 md:py-20 bg-slate-50/60 border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-3">
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
+          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-2.5 sm:mb-3">
             Academic Intervention Framework
           </Badge>
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 tracking-tight">
             Proposed Optimization Plan
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+          <p className="mt-2.5 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-normal px-1 sm:px-0">
             Every recommendation is directly tied to verified survey evidence, utilizing the academic sequence: <strong>Identified Problem → Evidence from Survey → Proposed Solution → Expected Impact</strong>.
           </p>
         </div>
 
         {/* 6 Strategy Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {plans.map((p) => {
             const Icon = p.icon;
             return (
-              <Card key={p.id} className="bg-white border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+              <Card key={p.id} className="bg-white border-slate-200 min-w-0 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="font-mono text-xs font-bold text-emerald-800 bg-emerald-100/70 px-2 py-0.5 rounded">

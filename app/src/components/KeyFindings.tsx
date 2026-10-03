@@ -79,21 +79,21 @@ export const KeyFindings: React.FC<KeyFindingsProps> = ({
   ];
 
   return (
-    <section id="findings" className="py-16 md:py-24 bg-white border-b border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="findings" className="py-10 sm:py-16 md:py-20 bg-white border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-8">
-          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-3">
+        <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8">
+          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-2.5 sm:mb-3">
             {t('findingsBadge')}
           </Badge>
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 tracking-tight">
             {t('findingsTitle')}
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+          <p className="mt-2.5 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-normal px-1 sm:px-0">
             {t('findingsSubtitle')}
           </p>
-          <div className="mt-6 flex items-center justify-center gap-2">
+          <div className="mt-4 sm:mt-6 hidden md:flex items-center justify-center gap-2">
             <span className="text-xs uppercase font-mono tracking-widest text-slate-400 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
               {t('findingsScrollPrompt')}
@@ -101,8 +101,8 @@ export const KeyFindings: React.FC<KeyFindingsProps> = ({
           </div>
         </div>
 
-        {/* Skiper16 Interactive Sticky Card Stack */}
-        <div className="mb-20">
+        {/* Skiper16 Interactive Sticky Card Stack (Desktop) / One-Frame Viewer (Mobile) */}
+        <div className="mb-10 sm:mb-16 md:mb-20">
           <Skiper16FindingsStack findings={findings} />
         </div>
 

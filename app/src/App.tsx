@@ -21,7 +21,7 @@ export function App() {
   return (
     <LanguageProvider>
       <ReactLenis root options={{ lerp: 0.08, duration: 1.2, smoothWheel: true }}>
-        <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-emerald-500 selection:text-white">
+        <div className="min-h-screen w-full max-w-full overflow-x-hidden flex flex-col bg-slate-50 text-slate-900 selection:bg-emerald-500 selection:text-white">
           {/* Skiper8 Words Preloader */}
       <Skiper8
         words={[
@@ -49,7 +49,7 @@ export function App() {
       {/* Global Navigation Bar with Sticky Blur */}
       <Navbar />
 
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden">
         {/* Hero Section & Live Snapshot KPIs */}
         <HeroSection
           stats={stats}

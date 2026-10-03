@@ -189,42 +189,44 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
   const areaTypesList = ['All', 'Apartment or Society', 'Independent House', 'Hostel or PG', 'Slum or Informal Settlement'];
 
   return (
-    <section id="insights" className="py-16 md:py-24 bg-slate-50/60 border-b border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="insights" className="py-10 sm:py-16 md:py-20 bg-slate-50/60 border-b border-slate-200/80 w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-6 sm:mb-10">
           <div>
             <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-2">
               {t('insightsBadge')}
             </Badge>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 tracking-tight">
               {t('insightsTitle')}
             </h2>
-            <p className="mt-2 text-slate-600 text-base max-w-2xl font-normal">
+            <p className="mt-1.5 sm:mt-2 text-slate-600 text-sm sm:text-base max-w-2xl font-normal">
               {t('insightsSubtitle')}
             </p>
           </div>
 
-          {/* Area Type Filter Bar */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-white rounded-xl border border-slate-200 shadow-2xs">
-            <span className="text-xs font-semibold text-slate-500 px-2 flex items-center gap-1">
-              <Filter className="w-3.5 h-3.5 text-emerald-700" />
-              {t('areaFilter')}
-            </span>
-            {areaTypesList.map((area) => (
-              <button
-                key={area}
-                onClick={() => setSelectedAreaFilter(area)}
-                className={`px-3 py-1 text-xs rounded-lg font-medium transition-all cursor-pointer ${
-                  selectedAreaFilter === area
-                    ? 'bg-emerald-800 text-white shadow-2xs font-semibold'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                }`}
-              >
-                {area === 'All' ? t('allFilter') : area === 'Slum or Informal Settlement' ? 'Slum/Informal' : area}
-              </button>
-            ))}
+          {/* Area Type Filter Bar (Horizontally scrollable on mobile) */}
+          <div className="w-full md:w-auto overflow-x-auto no-scrollbar -mx-1 px-1">
+            <div className="inline-flex items-center gap-1.5 p-1 bg-white rounded-xl border border-slate-200 shadow-2xs whitespace-nowrap">
+              <span className="text-xs font-semibold text-slate-500 px-2 flex items-center gap-1 shrink-0">
+                <Filter className="w-3.5 h-3.5 text-emerald-700" />
+                {t('areaFilter')}
+              </span>
+              {areaTypesList.map((area) => (
+                <button
+                  key={area}
+                  onClick={() => setSelectedAreaFilter(area)}
+                  className={`px-3 py-1.5 text-xs rounded-lg font-medium transition-all cursor-pointer shrink-0 ${
+                    selectedAreaFilter === area
+                      ? 'bg-emerald-800 text-white shadow-2xs font-semibold'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  }`}
+                >
+                  {area === 'All' ? t('allFilter') : area === 'Slum or Informal Settlement' ? 'Slum/Informal' : area}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -243,65 +245,66 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
           </div>
         )}
 
-        {/* Dashboard Tabs using @beui/tabs */}
+        {/* Dashboard Tabs using @beui/tabs with smooth horizontal scroll on mobile */}
         <Tabs defaultValue="generation" variant="segment" className="w-full">
-          <TabsList 
-            wrapperClassName="justify-center mb-8"
-            className="bg-slate-200/80 p-1.5 rounded-2xl border border-slate-300/60 shadow-xs flex-wrap sm:flex-nowrap justify-center gap-1.5"
-          >
-            <TabsTrigger 
-              value="generation" 
-              className="px-4 py-2.5 font-semibold text-xs sm:text-sm text-slate-700 hover:text-emerald-950 cursor-pointer flex items-center gap-2 rounded-xl"
-              indicatorClassName="bg-emerald-800 text-white rounded-xl shadow-xs"
+          <div className="w-full overflow-x-auto no-scrollbar flex justify-start sm:justify-center mb-6 sm:mb-8 pb-1">
+            <TabsList 
+              className="bg-slate-200/80 p-1 rounded-xl sm:rounded-2xl border border-slate-300/60 shadow-xs inline-flex flex-nowrap gap-1 shrink-0"
             >
-              <Trash2 className="w-4 h-4 shrink-0" />
-              <span>{t('tabGeneration')}</span>
-            </TabsTrigger>
-            <TabsTrigger 
-              value="segregation" 
-              className="px-4 py-2.5 font-semibold text-xs sm:text-sm text-slate-700 hover:text-emerald-950 cursor-pointer flex items-center gap-2 rounded-xl"
-              indicatorClassName="bg-emerald-800 text-white rounded-xl shadow-xs"
-            >
-              <Layers className="w-4 h-4 shrink-0" />
-              <span>{t('tabSegregation')}</span>
-            </TabsTrigger>
-            <TabsTrigger 
-              value="collection" 
-              className="px-4 py-2.5 font-semibold text-xs sm:text-sm text-slate-700 hover:text-emerald-950 cursor-pointer flex items-center gap-2 rounded-xl"
-              indicatorClassName="bg-emerald-800 text-white rounded-xl shadow-xs"
-            >
-              <Truck className="w-4 h-4 shrink-0" />
-              <span>{t('tabCollection')}</span>
-            </TabsTrigger>
-            <TabsTrigger 
-              value="recycling" 
-              className="px-4 py-2.5 font-semibold text-xs sm:text-sm text-slate-700 hover:text-emerald-950 cursor-pointer flex items-center gap-2 rounded-xl"
-              indicatorClassName="bg-emerald-800 text-white rounded-xl shadow-xs"
-            >
-              <Recycle className="w-4 h-4 shrink-0" />
-              <span>{t('tabRecycling')}</span>
-            </TabsTrigger>
-            <TabsTrigger 
-              value="awareness" 
-              className="px-4 py-2.5 font-semibold text-xs sm:text-sm text-slate-700 hover:text-emerald-950 cursor-pointer flex items-center gap-2 rounded-xl"
-              indicatorClassName="bg-emerald-800 text-white rounded-xl shadow-xs"
-            >
-              <Lightbulb className="w-4 h-4 shrink-0" />
-              <span>{t('tabAwareness')}</span>
-            </TabsTrigger>
-          </TabsList>
+              <TabsTrigger 
+                value="generation" 
+                className="px-3 sm:px-4 py-2 sm:py-2.5 font-semibold text-xs sm:text-sm text-slate-700 hover:text-emerald-950 cursor-pointer flex items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl shrink-0 whitespace-nowrap"
+                indicatorClassName="bg-emerald-800 text-white rounded-lg sm:rounded-xl shadow-xs"
+              >
+                <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span>{t('tabGeneration')}</span>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="segregation" 
+                className="px-3 sm:px-4 py-2 sm:py-2.5 font-semibold text-xs sm:text-sm text-slate-700 hover:text-emerald-950 cursor-pointer flex items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl shrink-0 whitespace-nowrap"
+                indicatorClassName="bg-emerald-800 text-white rounded-lg sm:rounded-xl shadow-xs"
+              >
+                <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span>{t('tabSegregation')}</span>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="collection" 
+                className="px-3 sm:px-4 py-2 sm:py-2.5 font-semibold text-xs sm:text-sm text-slate-700 hover:text-emerald-950 cursor-pointer flex items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl shrink-0 whitespace-nowrap"
+                indicatorClassName="bg-emerald-800 text-white rounded-lg sm:rounded-xl shadow-xs"
+              >
+                <Truck className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span>{t('tabCollection')}</span>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="recycling" 
+                className="px-3 sm:px-4 py-2 sm:py-2.5 font-semibold text-xs sm:text-sm text-slate-700 hover:text-emerald-950 cursor-pointer flex items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl shrink-0 whitespace-nowrap"
+                indicatorClassName="bg-emerald-800 text-white rounded-lg sm:rounded-xl shadow-xs"
+              >
+                <Recycle className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span>{t('tabRecycling')}</span>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="awareness" 
+                className="px-3 sm:px-4 py-2 sm:py-2.5 font-semibold text-xs sm:text-sm text-slate-700 hover:text-emerald-950 cursor-pointer flex items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl shrink-0 whitespace-nowrap"
+                indicatorClassName="bg-emerald-800 text-white rounded-lg sm:rounded-xl shadow-xs"
+              >
+                <Lightbulb className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span>{t('tabAwareness')}</span>
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           {/* TAB 1: WASTE GENERATION */}
           <TabsContent value="generation" className="space-y-6">
-            <div className="grid lg:grid-cols-2 gap-6">
+            <div className="grid lg:grid-cols-2 gap-4 sm:gap-6">
               {/* Daily Waste Generation Distribution */}
-              <Card className="bg-white border-slate-200">
-                <CardHeader className="pb-2">
+              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+                <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-base font-bold text-slate-900">
+                    <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                       Daily Household Waste Generation
                     </CardTitle>
-                    <Badge variant="outline" className="font-mono text-[11px] text-emerald-800 bg-emerald-50">
+                    <Badge variant="outline" className="font-mono text-[10px] sm:text-[11px] text-emerald-800 bg-emerald-50">
                       Bar Chart
                     </Badge>
                   </div>
@@ -309,13 +312,13 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                     Self-reported daily waste quantity per household across respondents
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-4">
-                  <div className="h-72 w-full">
+                <CardContent className="p-4 sm:p-6 pt-2 sm:pt-4">
+                  <div className="h-64 sm:h-72 w-full min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={dynamicStats.wastePerDay} margin={{ top: 10, right: 10, left: -20, bottom: 20 }}>
+                      <BarChart data={dynamicStats.wastePerDay} margin={{ top: 10, right: 10, left: -25, bottom: 20 }}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                        <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#64748b' }} angle={-15} textAnchor="end" />
-                        <YAxis tick={{ fontSize: 11, fill: '#64748b' }} />
+                        <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-15} textAnchor="end" />
+                        <YAxis tick={{ fontSize: 10, fill: '#64748b' }} />
                         <Tooltip 
                           formatter={(value: any, name: any, item: any) => [`${value} responses (${item.payload.percentage}%)`, 'Count']}
                           contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12px' }}
@@ -324,20 +327,20 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
-                  <p className="text-xs text-slate-500 mt-2 italic text-center">
+                  <p className="text-[11px] sm:text-xs text-slate-500 mt-2 italic text-center">
                     Majority of surveyed urban households report generating between 0.5 kg to 2 kg of solid waste each day.
                   </p>
                 </CardContent>
               </Card>
 
               {/* Dominant Waste Types Frequency */}
-              <Card className="bg-white border-slate-200">
-                <CardHeader className="pb-2">
+              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+                <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-base font-bold text-slate-900">
+                    <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                       Commonly Generated Waste Categories
                     </CardTitle>
-                    <Badge variant="outline" className="font-mono text-[11px] text-teal-800 bg-teal-50">
+                    <Badge variant="outline" className="font-mono text-[10px] sm:text-[11px] text-teal-800 bg-teal-50">
                       Multi-Select %
                     </Badge>
                   </div>
@@ -345,17 +348,17 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                     Proportion of households generating each category regularly
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-4">
-                  <div className="h-72 w-full">
+                <CardContent className="p-4 sm:p-6 pt-2 sm:pt-4">
+                  <div className="h-64 sm:h-72 w-full min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart 
                         data={dynamicStats.wasteTypes.slice(0, 7)} 
                         layout="vertical"
-                        margin={{ top: 10, right: 30, left: 35, bottom: 10 }}
+                        margin={{ top: 10, right: 20, left: 10, bottom: 10 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
-                        <XAxis type="number" tick={{ fontSize: 11, fill: '#64748b' }} unit="%" />
-                        <YAxis dataKey="name" type="category" tick={{ fontSize: 11, fill: '#334155' }} width={90} />
+                        <XAxis type="number" tick={{ fontSize: 10, fill: '#64748b' }} unit="%" />
+                        <YAxis dataKey="name" type="category" tick={{ fontSize: 10, fill: '#334155' }} width={80} />
                         <Tooltip 
                           formatter={(value: any) => [`${value}% of households`, 'Prevalence']}
                           contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12px' }}
@@ -364,7 +367,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
-                  <p className="text-xs text-slate-500 mt-2 italic text-center">
+                  <p className="text-[11px] sm:text-xs text-slate-500 mt-2 italic text-center">
                     Food & Kitchen organics dominate, closely accompanied by single-use packaging plastics and paper waste.
                   </p>
                 </CardContent>
@@ -374,19 +377,19 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
 
           {/* TAB 2: WASTE SEGREGATION */}
           <TabsContent value="segregation" className="space-y-6">
-            <div className="grid lg:grid-cols-3 gap-6">
+            <div className="grid lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Segregation Frequency Donut */}
-              <Card className="bg-white border-slate-200">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base font-bold text-slate-900">
+              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+                <CardHeader className="p-4 sm:p-6 pb-2">
+                  <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                     Segregation Regularity
                   </CardTitle>
                   <CardDescription className="text-xs text-slate-500">
                     How consistently citizens separate waste before handover
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-2">
-                  <div className="h-64 w-full">
+                <CardContent className="p-4 sm:p-6 pt-2">
+                  <div className="h-56 sm:h-64 w-full min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
@@ -395,8 +398,8 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                           nameKey="name"
                           cx="50%"
                           cy="50%"
-                          innerRadius={50}
-                          outerRadius={80}
+                          innerRadius={45}
+                          outerRadius={75}
                           paddingAngle={3}
                         >
                           {dynamicStats.segFreq.map((entry: any, index: number) => (
@@ -410,12 +413,12 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                       </PieChart>
                     </ResponsiveContainer>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 mt-1 text-xs">
+                  <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mt-1 text-[11px] sm:text-xs">
                     {dynamicStats.segFreq.map((item: any, idx: number) => (
-                      <div key={item.name} className="flex items-center gap-1.5">
-                        <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
+                      <div key={item.name} className="flex items-center gap-1.5 min-w-0">
+                        <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
                         <span className="text-slate-600 truncate">{item.name}:</span>
-                        <strong className="text-slate-900 font-mono">{item.percentage}%</strong>
+                        <strong className="text-slate-900 font-mono shrink-0">{item.percentage}%</strong>
                       </div>
                     ))}
                   </div>
@@ -423,13 +426,13 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
               </Card>
 
               {/* Main Barriers to Segregation */}
-              <Card className="bg-white border-slate-200 lg:col-span-2">
-                <CardHeader className="pb-2">
+              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden lg:col-span-2">
+                <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-base font-bold text-slate-900">
+                    <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                       Why Citizens Don't Always Segregate (Key Barriers)
                     </CardTitle>
-                    <Badge variant="outline" className="font-mono text-[11px] text-rose-800 bg-rose-50 border-rose-200">
+                    <Badge variant="outline" className="font-mono text-[10px] sm:text-[11px] text-rose-800 bg-rose-50 border-rose-200">
                       Root Causes
                     </Badge>
                   </div>
@@ -437,17 +440,17 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                     Primary systemic and behavioral friction points identified in survey
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-2">
-                  <div className="h-64 w-full">
+                <CardContent className="p-4 sm:p-6 pt-2">
+                  <div className="h-56 sm:h-64 w-full min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart 
                         data={dynamicStats.segBarriers.slice(0, 5)} 
                         layout="vertical"
-                        margin={{ top: 10, right: 30, left: 40, bottom: 10 }}
+                        margin={{ top: 10, right: 20, left: 10, bottom: 10 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
-                        <XAxis type="number" tick={{ fontSize: 11, fill: '#64748b' }} />
-                        <YAxis dataKey="name" type="category" tick={{ fontSize: 11, fill: '#334155' }} width={120} />
+                        <XAxis type="number" tick={{ fontSize: 10, fill: '#64748b' }} />
+                        <YAxis dataKey="name" type="category" tick={{ fontSize: 10, fill: '#334155' }} width={95} />
                         <Tooltip 
                           formatter={(value: any, name: any, item: any) => [`${value} responses (${item.payload.percentage}%)`, 'Reported']}
                           contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12px' }}
@@ -456,7 +459,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
-                  <div className="mt-3 p-3 bg-amber-50/70 border border-amber-200 rounded-lg flex items-start gap-2.5 text-xs text-amber-900">
+                  <div className="mt-3 p-2.5 sm:p-3 bg-amber-50/70 border border-amber-200 rounded-lg flex items-start gap-2 text-xs text-amber-900">
                     <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
                     <div>
                       <strong>Critical Finding:</strong> Over <strong>44%</strong> of respondents cite that <em>"Waste collectors mix the waste anyway"</em>, severely degrading household motivation to segregate at the source.
@@ -469,26 +472,26 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
 
           {/* TAB 3: WASTE COLLECTION */}
           <TabsContent value="collection" className="space-y-6">
-            <div className="grid lg:grid-cols-3 gap-6">
+            <div className="grid lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Collection Method & Frequency */}
-              <Card className="bg-white border-slate-200">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base font-bold text-slate-900">
+              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+                <CardHeader className="p-4 sm:p-6 pb-2">
+                  <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                     Collection Infrastructure
                   </CardTitle>
                   <CardDescription className="text-xs text-slate-500">
                     How waste is transported from households
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-2 space-y-4">
+                <CardContent className="p-4 sm:p-6 pt-2 space-y-4">
                   <div className="space-y-3">
-                    <span className="text-xs font-semibold text-slate-700 uppercase tracking-wider font-mono">
+                    <span className="text-[11px] sm:text-xs font-semibold text-slate-700 uppercase tracking-wider font-mono">
                       Primary Pickup Mode
                     </span>
                     {dynamicStats.collectionMethods.slice(0, 4).map((cm: any) => (
                       <div key={cm.name} className="space-y-1">
                         <div className="flex justify-between text-xs">
-                          <span className="text-slate-600 font-medium">{cm.name}</span>
+                          <span className="text-slate-600 font-medium truncate max-w-[180px]">{cm.name}</span>
                           <span className="font-mono font-bold text-slate-900">{cm.percentage}%</span>
                         </div>
                         <Progress value={cm.percentage} className="h-2 bg-slate-100" />
@@ -497,13 +500,13 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                   </div>
 
                   <div className="pt-3 border-t border-slate-100">
-                    <span className="text-xs font-semibold text-slate-700 uppercase tracking-wider font-mono">
+                    <span className="text-[11px] sm:text-xs font-semibold text-slate-700 uppercase tracking-wider font-mono">
                       Collection Regularity
                     </span>
                     <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
                       {dynamicStats.collectionFreq.slice(0, 4).map((cf: any) => (
                         <div key={cf.name} className="p-2 bg-slate-50 rounded border border-slate-200">
-                          <div className="font-bold text-slate-900">{cf.name}</div>
+                          <div className="font-bold text-slate-900 truncate">{cf.name}</div>
                           <div className="text-slate-500 text-[11px]">{cf.percentage}%</div>
                         </div>
                       ))}
@@ -513,10 +516,10 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
               </Card>
 
               {/* Collection Satisfaction Score */}
-              <Card className="bg-white border-slate-200">
-                <CardHeader className="pb-2">
+              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+                <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-base font-bold text-slate-900">
+                    <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                       Collection Satisfaction
                     </CardTitle>
                     <div className="flex items-center text-amber-500 gap-1 text-sm font-bold font-mono">
@@ -528,13 +531,13 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                     Citizen satisfaction rating breakdown
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-2">
-                  <div className="h-64 w-full">
+                <CardContent className="p-4 sm:p-6 pt-2">
+                  <div className="h-56 sm:h-64 w-full min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={dynamicStats.satisfactionDist} margin={{ top: 10, right: 10, left: -20, bottom: 10 }}>
+                      <BarChart data={dynamicStats.satisfactionDist} margin={{ top: 10, right: 10, left: -25, bottom: 10 }}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                        <XAxis dataKey="rating" tick={{ fontSize: 11, fill: '#64748b' }} />
-                        <YAxis tick={{ fontSize: 11, fill: '#64748b' }} />
+                        <XAxis dataKey="rating" tick={{ fontSize: 10, fill: '#64748b' }} />
+                        <YAxis tick={{ fontSize: 10, fill: '#64748b' }} />
                         <Tooltip 
                           formatter={(value: any, name: any, item: any) => [`${value} responses (${item.payload.percentage}%)`, 'Rating']}
                           contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12px' }}
@@ -543,28 +546,28 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
-                  <p className="text-xs text-slate-500 mt-2 italic text-center">
+                  <p className="text-[11px] sm:text-xs text-slate-500 mt-2 italic text-center">
                     Satisfaction is moderate with notable polarizations: 3 and 4 stars lead, but significant dissatisfaction exists.
                   </p>
                 </CardContent>
               </Card>
 
               {/* Reported Collection Bottlenecks */}
-              <Card className="bg-white border-slate-200">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base font-bold text-slate-900">
+              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+                <CardHeader className="p-4 sm:p-6 pb-2">
+                  <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                     Observed Collection Problems
                   </CardTitle>
                   <CardDescription className="text-xs text-slate-500">
                     Frequently reported neighborhood issues
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-2">
+                <CardContent className="p-4 sm:p-6 pt-2">
                   <div className="space-y-3">
                     {dynamicStats.problems.slice(0, 5).map((prob: any) => (
                       <div key={prob.name} className="space-y-1">
                         <div className="flex justify-between text-xs">
-                          <span className="text-slate-700 font-medium truncate max-w-[200px]" title={prob.name}>
+                          <span className="text-slate-700 font-medium truncate max-w-[190px]" title={prob.name}>
                             {prob.name}
                           </span>
                           <span className="font-mono text-rose-700 font-bold">{prob.percentage}%</span>
@@ -573,7 +576,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-600">
+                  <div className="mt-5 p-2.5 sm:p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-600">
                     <strong>Top Complaint:</strong> Overflowing community bins and bad smell caused by delayed municipal collection cycles.
                   </div>
                 </CardContent>
@@ -583,28 +586,28 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
 
           {/* TAB 4: RECYCLING & E-WASTE */}
           <TabsContent value="recycling" className="space-y-6">
-            <div className="grid lg:grid-cols-2 gap-6">
+            <div className="grid lg:grid-cols-2 gap-4 sm:gap-6">
               {/* Recyclables Destination */}
-              <Card className="bg-white border-slate-200">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base font-bold text-slate-900">
+              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+                <CardHeader className="p-4 sm:p-6 pb-2">
+                  <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                     Disposal Channels for Recyclables
                   </CardTitle>
                   <CardDescription className="text-xs text-slate-500">
                     Where dry recyclables (paper, plastic, metal) actually end up
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-4">
-                  <div className="h-72 w-full">
+                <CardContent className="p-4 sm:p-6 pt-2 sm:pt-4">
+                  <div className="h-64 sm:h-72 w-full min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart 
                         data={dynamicStats.recyclables.slice(0, 5)} 
                         layout="vertical"
-                        margin={{ top: 10, right: 30, left: 40, bottom: 10 }}
+                        margin={{ top: 10, right: 20, left: 10, bottom: 10 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
-                        <XAxis type="number" tick={{ fontSize: 11, fill: '#64748b' }} unit="%" />
-                        <YAxis dataKey="name" type="category" tick={{ fontSize: 11, fill: '#334155' }} width={120} />
+                        <XAxis type="number" tick={{ fontSize: 10, fill: '#64748b' }} unit="%" />
+                        <YAxis dataKey="name" type="category" tick={{ fontSize: 10, fill: '#334155' }} width={85} />
                         <Tooltip 
                           formatter={(value: any) => [`${value}%`, 'Share']}
                           contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12px' }}
@@ -613,20 +616,20 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
-                  <p className="text-xs text-slate-500 mt-2 italic text-center">
+                  <p className="text-[11px] sm:text-xs text-slate-500 mt-2 italic text-center">
                     Scrap dealers (kabadiwalas) and municipal collectors handle the bulk of dry recyclables.
                   </p>
                 </CardContent>
               </Card>
 
               {/* Electronic Waste Disposal Breakdown */}
-              <Card className="bg-white border-slate-200">
-                <CardHeader className="pb-2">
+              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+                <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-base font-bold text-slate-900">
+                    <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                       E-Waste Disposal Pathway
                     </CardTitle>
-                    <Badge variant="outline" className="font-mono text-[11px] text-amber-800 bg-amber-50">
+                    <Badge variant="outline" className="font-mono text-[10px] sm:text-[11px] text-amber-800 bg-amber-50">
                       Hazard Risk
                     </Badge>
                   </div>
@@ -634,8 +637,8 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                     How citizens dispose of dead phones, chargers, and batteries
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-4">
-                  <div className="h-72 w-full">
+                <CardContent className="p-4 sm:p-6 pt-2 sm:pt-4">
+                  <div className="h-56 sm:h-64 w-full min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
@@ -644,7 +647,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                           nameKey="name"
                           cx="50%"
                           cy="50%"
-                          outerRadius={85}
+                          outerRadius={75}
                           paddingAngle={3}
                         >
                           {dynamicStats.ewaste.map((entry: any, index: number) => (
@@ -658,12 +661,12 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                       </PieChart>
                     </ResponsiveContainer>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 mt-2 text-xs">
+                  <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mt-2 text-[11px] sm:text-xs">
                     {dynamicStats.ewaste.map((item: any, idx: number) => (
-                      <div key={item.name} className="flex items-center gap-1.5">
-                        <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
+                      <div key={item.name} className="flex items-center gap-1.5 min-w-0">
+                        <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
                         <span className="text-slate-600 truncate">{item.name}:</span>
-                        <strong className="text-slate-900 font-mono">{item.percentage}%</strong>
+                        <strong className="text-slate-900 font-mono shrink-0">{item.percentage}%</strong>
                       </div>
                     ))}
                   </div>
@@ -674,15 +677,15 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
 
           {/* TAB 5: AWARENESS ANALYSIS */}
           <TabsContent value="awareness" className="space-y-6">
-            <div className="grid lg:grid-cols-2 gap-6">
+            <div className="grid lg:grid-cols-2 gap-4 sm:gap-6">
               {/* Overall Awareness Index Distribution */}
-              <Card className="bg-white border-slate-200">
-                <CardHeader className="pb-2">
+              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+                <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-base font-bold text-slate-900">
+                    <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                       Overall Awareness Rating (1 to 5)
                     </CardTitle>
-                    <Badge variant="outline" className="font-mono text-emerald-800 bg-emerald-50 text-xs">
+                    <Badge variant="outline" className="font-mono text-emerald-800 bg-emerald-50 text-[10px] sm:text-xs">
                       Avg: {dynamicStats.avgAware} / 5.0
                     </Badge>
                   </div>
@@ -690,13 +693,13 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                     Self-rated environmental and segregation literacy
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-4">
-                  <div className="h-72 w-full">
+                <CardContent className="p-4 sm:p-6 pt-2 sm:pt-4">
+                  <div className="h-56 sm:h-64 w-full min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={dynamicStats.awareDist} margin={{ top: 10, right: 10, left: -20, bottom: 10 }}>
+                      <BarChart data={dynamicStats.awareDist} margin={{ top: 10, right: 10, left: -25, bottom: 10 }}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                        <XAxis dataKey="level" tick={{ fontSize: 11, fill: '#64748b' }} />
-                        <YAxis tick={{ fontSize: 11, fill: '#64748b' }} />
+                        <XAxis dataKey="level" tick={{ fontSize: 10, fill: '#64748b' }} />
+                        <YAxis tick={{ fontSize: 10, fill: '#64748b' }} />
                         <Tooltip 
                           formatter={(value: any, name: any, item: any) => [`${value} responses (${item.payload.percentage}%)`, 'Respondents']}
                           contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12px' }}
@@ -705,28 +708,28 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
-                  <p className="text-xs text-slate-500 mt-2 italic text-center">
+                  <p className="text-[11px] sm:text-xs text-slate-500 mt-2 italic text-center">
                     Level 3 (Moderate) and Level 4 (High) form the bulk of respondents.
                   </p>
                 </CardContent>
               </Card>
 
               {/* Topic-by-Topic Awareness Checklist */}
-              <Card className="bg-white border-slate-200">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base font-bold text-slate-900">
+              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+                <CardHeader className="p-4 sm:p-6 pb-2">
+                  <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                     Awareness Across Specific Waste Practices
                   </CardTitle>
                   <CardDescription className="text-xs text-slate-500">
                     Which specialized waste management practices respondents recognize
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-4">
+                <CardContent className="p-4 sm:p-6 pt-2 sm:pt-4">
                   <div className="space-y-3">
                     {dynamicStats.awareTopics.slice(0, 6).map((topic: any) => (
                       <div key={topic.name} className="space-y-1">
                         <div className="flex justify-between text-xs">
-                          <span className="text-slate-700 font-medium">{topic.name}</span>
+                          <span className="text-slate-700 font-medium truncate max-w-[200px]">{topic.name}</span>
                           <span className="font-mono text-emerald-800 font-bold">{topic.percentage}%</span>
                         </div>
                         <Progress value={topic.percentage} className="h-2 bg-slate-100" />
@@ -734,14 +737,14 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                     ))}
                   </div>
 
-                  <div className="mt-6 p-4 bg-emerald-50/60 border border-emerald-200 rounded-xl flex items-center justify-between">
+                  <div className="mt-5 p-3 sm:p-4 bg-emerald-50/60 border border-emerald-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
                     <div>
-                      <div className="font-bold text-sm text-emerald-950">Civic Campaign Openness</div>
-                      <div className="text-xs text-emerald-800 mt-0.5">
+                      <div className="font-bold text-xs sm:text-sm text-emerald-950">Civic Campaign Openness</div>
+                      <div className="text-[11px] sm:text-xs text-emerald-800 mt-0.5">
                         {stats.campaign_positive_rate}% of respondents are willing or open to join awareness drives.
                       </div>
                     </div>
-                    <Badge className="bg-emerald-800 text-white font-mono">
+                    <Badge className="bg-emerald-800 text-white font-mono self-start sm:self-auto text-xs">
                       {stats.campaign_positive_rate}% Yes/Maybe
                     </Badge>
                   </div>
