@@ -93,7 +93,7 @@ export const KeyFindings: React.FC<KeyFindingsProps> = ({
           <p className="mt-2.5 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-normal px-1 sm:px-0">
             {t('findingsSubtitle')}
           </p>
-          <div className="mt-4 sm:mt-6 hidden md:flex items-center justify-center gap-2">
+          <div className="mt-4 sm:mt-6 flex items-center justify-center gap-2">
             <span className="text-xs uppercase font-mono tracking-widest text-slate-400 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
               {t('findingsScrollPrompt')}
