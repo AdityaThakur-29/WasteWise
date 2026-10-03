@@ -14,6 +14,7 @@ import { CometCursor } from './components/CometCursor';
 import { Skiper8 } from './components/ui/skiper-ui/skiper8';
 import ReactLenis from 'lenis/react';
 import { LanguageProvider } from './context/LanguageContext';
+import { CloudShader } from './components/ui/cloud-shader';
 
 export function App() {
   const stats = surveyData.stats;
@@ -21,7 +22,23 @@ export function App() {
   return (
     <LanguageProvider>
       <ReactLenis root options={{ lerp: 0.08, duration: 1.2, smoothWheel: true }}>
-        <div className="min-h-screen w-full max-w-full overflow-x-hidden flex flex-col bg-slate-50 text-slate-900 selection:bg-emerald-500 selection:text-white">
+        <div className="relative min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-transparent text-slate-900 selection:bg-emerald-500 selection:text-white">
+          {/* Aceternity Full-Page Cloud Shader Background */}
+          <div 
+            className="fixed inset-0 pointer-events-none z-0 w-full h-full overflow-hidden" 
+            aria-hidden="true"
+          >
+            <CloudShader 
+              className="w-full h-full min-h-0" 
+              speed={0.8}
+              count={6}
+              cloudColor="#fbf8f2"
+              skyTopColor="#3876ba"
+              skyBottomColor="#8cbfe8"
+            />
+          </div>
+
+          <div className="relative z-10 flex flex-col min-h-screen w-full">
           {/* Skiper8 Words Preloader */}
       <Skiper8
         words={[
@@ -49,7 +66,7 @@ export function App() {
       {/* Global Navigation Bar with Sticky Blur */}
       <Navbar />
 
-      <main className="flex-1 w-full max-w-full overflow-x-hidden">
+      <main className="flex-1 w-full max-w-full overflow-x-clip">
         {/* Hero Section & Live Snapshot KPIs */}
         <HeroSection
           stats={stats}
@@ -89,8 +106,9 @@ export function App() {
 
       {/* Academic Attribution Footer */}
       <Footer />
-    </div>
-    </ReactLenis>
+          </div>
+        </div>
+      </ReactLenis>
     </LanguageProvider>
   );
 }

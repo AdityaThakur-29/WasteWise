@@ -4,6 +4,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from './ui/tabs';
 import { Badge } from './ui/badge';
 import { Progress } from './ui/progress';
 import { useLanguage } from '../context/LanguageContext';
+import { TextAnimate } from './ui/text-animate';
 import { 
   BarChart, 
   Bar, 
@@ -189,28 +190,35 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
   const areaTypesList = ['All', 'Apartment or Society', 'Independent House', 'Hostel or PG', 'Slum or Informal Settlement'];
 
   return (
-    <section id="insights" className="py-10 sm:py-16 md:py-20 bg-slate-50/60 border-b border-slate-200/80 w-full overflow-hidden">
+    <section id="insights" className="py-10 sm:py-16 md:py-20 bg-transparent w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-6 sm:mb-10">
+        <div className="flex flex-col items-start gap-4 sm:gap-5 mb-6 sm:mb-8">
           <div>
-            <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-2">
-              {t('insightsBadge')}
-            </Badge>
-            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 tracking-tight">
+            <TextAnimate
+              as="h2"
+              animation="blurIn"
+              by="word"
+              className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight"
+            >
               {t('insightsTitle')}
-            </h2>
-            <p className="mt-1.5 sm:mt-2 text-slate-600 text-sm sm:text-base max-w-2xl font-normal">
+            </TextAnimate>
+            <TextAnimate
+              as="p"
+              animation="blurIn"
+              by="word"
+              className="mt-2 sm:mt-3 text-slate-700 text-base sm:text-lg md:text-xl max-w-3xl font-normal leading-relaxed"
+            >
               {t('insightsSubtitle')}
-            </p>
+            </TextAnimate>
           </div>
 
-          {/* Area Type Filter Bar (Horizontally scrollable on mobile) */}
-          <div className="w-full md:w-auto overflow-x-auto no-scrollbar -mx-1 px-1">
-            <div className="inline-flex items-center gap-1.5 p-1 bg-white rounded-xl border border-slate-200 shadow-2xs whitespace-nowrap">
-              <span className="text-xs font-semibold text-slate-500 px-2 flex items-center gap-1 shrink-0">
-                <Filter className="w-3.5 h-3.5 text-emerald-700" />
+          {/* Area Type Filter Bar (Placed directly under description) */}
+          <div className="w-full overflow-x-auto no-scrollbar -mx-1 px-1">
+            <div className="inline-flex items-center gap-1.5 p-1 bg-white rounded-xl border border-slate-200 shadow-xs whitespace-nowrap">
+              <span className="text-xs font-semibold text-slate-700 px-2 flex items-center gap-1 shrink-0">
+                <Filter className="w-3.5 h-3.5 text-emerald-800" />
                 {t('areaFilter')}
               </span>
               {areaTypesList.map((area) => (
@@ -220,7 +228,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
                   className={`px-3 py-1.5 text-xs rounded-lg font-medium transition-all cursor-pointer shrink-0 ${
                     selectedAreaFilter === area
                       ? 'bg-emerald-800 text-white shadow-2xs font-semibold'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                      : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
                   }`}
                 >
                   {area === 'All' ? t('allFilter') : area === 'Slum or Informal Settlement' ? 'Slum/Informal' : area}
@@ -298,7 +306,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
           <TabsContent value="generation" className="space-y-6">
             <div className="grid lg:grid-cols-2 gap-4 sm:gap-6">
               {/* Daily Waste Generation Distribution */}
-              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+              <Card className="bg-white border border-slate-200 min-w-0 shadow-sm hover:shadow-md transition-all overflow-hidden">
                 <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
@@ -334,7 +342,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
               </Card>
 
               {/* Dominant Waste Types Frequency */}
-              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+              <Card className="bg-white border border-slate-200 min-w-0 shadow-sm hover:shadow-md transition-all overflow-hidden">
                 <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
@@ -379,7 +387,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
           <TabsContent value="segregation" className="space-y-6">
             <div className="grid lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Segregation Frequency Donut */}
-              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+              <Card className="bg-white border border-slate-200 min-w-0 shadow-sm hover:shadow-md transition-all overflow-hidden">
                 <CardHeader className="p-4 sm:p-6 pb-2">
                   <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                     Segregation Regularity
@@ -426,7 +434,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
               </Card>
 
               {/* Main Barriers to Segregation */}
-              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden lg:col-span-2">
+              <Card className="bg-white border border-slate-200 min-w-0 shadow-sm hover:shadow-md transition-all overflow-hidden lg:col-span-2">
                 <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
@@ -474,7 +482,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
           <TabsContent value="collection" className="space-y-6">
             <div className="grid lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Collection Method & Frequency */}
-              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+              <Card className="bg-white border border-slate-200 min-w-0 shadow-sm hover:shadow-md transition-all overflow-hidden">
                 <CardHeader className="p-4 sm:p-6 pb-2">
                   <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                     Collection Infrastructure
@@ -516,7 +524,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
               </Card>
 
               {/* Collection Satisfaction Score */}
-              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+              <Card className="bg-white border border-slate-200 min-w-0 shadow-sm hover:shadow-md transition-all overflow-hidden">
                 <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
@@ -553,7 +561,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
               </Card>
 
               {/* Reported Collection Bottlenecks */}
-              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+              <Card className="bg-white border border-slate-200 min-w-0 shadow-sm hover:shadow-md transition-all overflow-hidden">
                 <CardHeader className="p-4 sm:p-6 pb-2">
                   <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                     Observed Collection Problems
@@ -588,7 +596,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
           <TabsContent value="recycling" className="space-y-6">
             <div className="grid lg:grid-cols-2 gap-4 sm:gap-6">
               {/* Recyclables Destination */}
-              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+              <Card className="bg-white border border-slate-200 min-w-0 shadow-sm hover:shadow-md transition-all overflow-hidden">
                 <CardHeader className="p-4 sm:p-6 pb-2">
                   <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                     Disposal Channels for Recyclables
@@ -623,7 +631,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
               </Card>
 
               {/* Electronic Waste Disposal Breakdown */}
-              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+              <Card className="bg-white border border-slate-200 min-w-0 shadow-sm hover:shadow-md transition-all overflow-hidden">
                 <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
@@ -679,7 +687,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
           <TabsContent value="awareness" className="space-y-6">
             <div className="grid lg:grid-cols-2 gap-4 sm:gap-6">
               {/* Overall Awareness Index Distribution */}
-              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+              <Card className="bg-white border border-slate-200 min-w-0 shadow-sm hover:shadow-md transition-all overflow-hidden">
                 <CardHeader className="p-4 sm:p-6 pb-2">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
@@ -715,7 +723,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
               </Card>
 
               {/* Topic-by-Topic Awareness Checklist */}
-              <Card className="bg-white border-slate-200 min-w-0 shadow-2xs overflow-hidden">
+              <Card className="bg-white border border-slate-200 min-w-0 shadow-sm hover:shadow-md transition-all overflow-hidden">
                 <CardHeader className="p-4 sm:p-6 pb-2">
                   <CardTitle className="text-sm sm:text-base font-bold text-slate-900">
                     Awareness Across Specific Waste Practices

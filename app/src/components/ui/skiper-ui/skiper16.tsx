@@ -81,12 +81,14 @@ export interface FindingData {
 
 export const StickyFindingCard = ({
   i,
+  total = 4,
   finding,
   progress,
   range,
   targetScale,
 }: {
   i: number;
+  total?: number;
   finding: FindingData;
   progress: MotionValue<number>;
   range: [number, number];
@@ -94,27 +96,33 @@ export const StickyFindingCard = ({
 }) => {
   const container = useRef<HTMLDivElement>(null);
   const scale = useTransform(progress, range, [1, targetScale]);
+  const isLast = i === total - 1;
 
   return (
     <div
       ref={container}
-      className="sticky top-16 sm:top-20 flex items-start justify-center w-full min-h-[48vh] sm:min-h-[55vh] md:min-h-[62vh] px-2.5 sm:px-4 pointer-events-auto"
+      style={{
+        top: `calc(clamp(96px, 12vh, 120px) + ${i * 22}px)`,
+        zIndex: i + 10,
+      }}
+      className={`sticky flex items-start justify-center w-full px-2.5 sm:px-4 pointer-events-auto ${
+        isLast ? 'min-h-0 pb-4 sm:pb-6' : 'min-h-[34vh] sm:min-h-[40vh] md:min-h-[44vh]'
+      }`}
     >
       <motion.div
         style={{
           scale,
-          top: `calc(6px + ${i * 14}px)`,
         }}
-        className={`relative w-full max-w-4xl origin-top rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-xl border ${finding.borderColor} ${finding.bgGradient} backdrop-blur-md transition-shadow hover:shadow-2xl`}
+        className="relative w-full max-w-4xl origin-top rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xl border border-slate-200 bg-white transition-shadow hover:shadow-2xl"
       >
         {/* Card Header */}
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5 sm:mb-4 pb-2.5 sm:pb-4 border-b border-slate-200/70">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5 sm:mb-4 pb-2.5 sm:pb-4 border-b border-slate-100">
           <div className="flex items-center gap-2 sm:gap-3">
             <span className={`w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl flex items-center justify-center font-mono font-bold text-xs sm:text-sm shadow-xs ${finding.iconBg}`}>
               #{finding.id}
             </span>
             <div>
-              <span className="text-[10px] sm:text-xs font-mono font-semibold tracking-wider uppercase text-emerald-800">
+              <span className="text-[10px] sm:text-xs font-mono font-semibold tracking-wider uppercase text-emerald-900">
                 {finding.category}
               </span>
             </div>
@@ -130,8 +138,8 @@ export const StickyFindingCard = ({
         </h3>
 
         {/* Evidence Quote Block */}
-        <div className="p-3 sm:p-4 bg-white/95 rounded-xl sm:rounded-2xl border border-slate-200/90 shadow-2xs mb-2.5 sm:mb-4">
-          <div className="text-[9px] sm:text-[10px] uppercase font-mono font-bold tracking-wider text-slate-500 mb-1 flex items-center gap-1.5">
+        <div className="p-3 sm:p-4 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 shadow-xs mb-2.5 sm:mb-4">
+          <div className="text-[9px] sm:text-[10px] uppercase font-mono font-bold tracking-wider text-slate-600 mb-1 flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block" />
             Field Evidence from 146 Households:
           </div>
@@ -179,17 +187,18 @@ export const Skiper16FindingsStack = ({
   return (
     <div
       ref={container}
-      className="relative w-full flex flex-col items-center justify-start pt-2 sm:pt-4 pb-[22vh] sm:pb-[26vh]"
+      className="relative w-full flex flex-col items-center justify-start pt-2 sm:pt-4 pb-2 sm:pb-4"
     >
       {findings.map((finding, i) => {
-        const targetScale = Math.max(0.9, 1 - (findings.length - i - 1) * 0.035);
+        const targetScale = Math.max(0.92, 1 - (findings.length - i - 1) * 0.025);
         return (
           <StickyFindingCard
             key={finding.id}
             i={i}
+            total={findings.length}
             finding={finding}
             progress={scrollYProgress}
-            range={[i * 0.25, 1]}
+            range={[i * 0.22, 1]}
             targetScale={targetScale}
           />
         );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
+import { TextAnimate } from './ui/text-animate';
 import { 
   Apple, 
   Package, 
@@ -161,20 +162,27 @@ export const AwarenessHub: React.FC = () => {
   const CurrentIcon = currentCat.icon;
 
   return (
-    <section id="awareness" className="py-10 sm:py-16 md:py-20 bg-white border-b border-slate-200/80">
+    <section id="awareness" className="py-10 sm:py-16 md:py-20 bg-transparent">
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
-          <Badge variant="outline" className="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-50 border-emerald-200 px-3 py-1 mb-2.5 sm:mb-3">
-            Civic Education Toolkit
-          </Badge>
-          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 tracking-tight">
+          <TextAnimate
+            as="h2"
+            animation="blurIn"
+            by="word"
+            className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight"
+          >
             Awareness Hub & Segregation Guide
-          </h2>
-          <p className="mt-2.5 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-normal px-1 sm:px-0">
+          </TextAnimate>
+          <TextAnimate
+            as="p"
+            animation="blurIn"
+            by="word"
+            className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-normal px-1 sm:px-0"
+          >
             Practical, visual, and immediately actionable rules. Discover what goes where, how to prep materials, and how to eliminate contamination.
-          </p>
+          </TextAnimate>
         </div>
 
         {/* 4 Category Switcher */}
@@ -189,15 +197,15 @@ export const AwarenessHub: React.FC = () => {
                 onClick={() => setActiveCategory(catKey)}
                 className={`p-3 sm:p-4 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
                   isSelected 
-                    ? 'border-emerald-600 bg-emerald-50/70 shadow-2xs ring-2 ring-emerald-600/20' 
-                    : 'border-slate-200 bg-white hover:bg-slate-50'
+                    ? 'border-emerald-600 bg-emerald-50 shadow-xs ring-2 ring-emerald-600/30' 
+                    : 'border-slate-200 bg-white hover:bg-slate-50 shadow-xs'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1.5 sm:mb-2">
-                  <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${isSelected ? 'text-emerald-800' : 'text-slate-500'}`} />
-                  <Badge variant="outline" className="text-[9px] sm:text-[10px] font-mono px-1.5 py-0.5">
+                  <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${isSelected ? 'text-emerald-900' : 'text-slate-600'}`} />
+                  <span className="text-[9px] sm:text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">
                     {cat.badge}
-                  </Badge>
+                  </span>
                 </div>
                 <div className={`font-heading font-bold text-xs sm:text-sm ${isSelected ? 'text-emerald-950 font-extrabold' : 'text-slate-800'}`}>
                   {cat.title}
@@ -208,24 +216,24 @@ export const AwarenessHub: React.FC = () => {
         </div>
 
         {/* Active Category Deep Dive Card */}
-        <Card className="border-slate-200 shadow-2xs mb-10 sm:mb-16 overflow-hidden">
-          <div className="p-4 sm:p-6 lg:p-8 bg-slate-50/60 border-b border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+        <Card className="border-slate-200 bg-white shadow-lg mb-10 sm:mb-16 overflow-hidden">
+          <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-emerald-800 shadow-2xs shrink-0">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-emerald-900 shadow-xs shrink-0">
                 <CurrentIcon className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div>
                 <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900">
                   {currentCat.title}
                 </h3>
-                <p className="text-[11px] sm:text-xs text-slate-600 mt-0.5 max-w-xl">
+                <p className="text-[11px] sm:text-xs text-slate-700 mt-0.5 max-w-xl">
                   {currentCat.desc}
                 </p>
               </div>
             </div>
-            <Badge className="bg-emerald-800 text-white font-mono text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 self-start sm:self-auto shrink-0">
+            <span className="bg-emerald-800 text-white font-mono text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 rounded-md self-start sm:self-auto shrink-0 shadow-xs">
               Designated: {currentCat.badge}
-            </Badge>
+            </span>
           </div>
 
           <CardContent className="p-4 sm:p-6 lg:p-8 grid md:grid-cols-2 gap-6 sm:gap-8">
@@ -284,14 +292,14 @@ export const AwarenessHub: React.FC = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {steps.map((s) => (
-              <div key={s.num} className="bg-slate-50 p-5 rounded-xl border border-slate-200">
-                <span className="font-mono text-xs font-bold text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded">
+              <div key={s.num} className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:shadow-md transition-all">
+                <span className="font-mono text-xs font-bold text-emerald-950 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200">
                   Step {s.num}
                 </span>
                 <h4 className="font-heading font-bold text-base text-slate-900 mt-3">
                   {s.title}
                 </h4>
-                <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                <p className="text-xs text-slate-700 mt-1.5 leading-relaxed">
                   {s.desc}
                 </p>
               </div>
@@ -302,26 +310,26 @@ export const AwarenessHub: React.FC = () => {
         {/* Visual Do's & Don'ts Comparison Table */}
         <div>
           <div className="text-center mb-8">
-            <span className="text-xs uppercase font-mono tracking-widest font-bold text-slate-500">
+            <span className="text-xs uppercase font-mono tracking-widest font-bold text-slate-600">
               Practical Reference
             </span>
-            <h3 className="font-heading font-bold text-2xl text-slate-900 mt-2">
+            <h3 className="font-heading font-bold text-2xl sm:text-3xl text-slate-900 mt-2">
               Everyday Do's and Don'ts
             </h3>
           </div>
 
-          <div className="overflow-hidden border border-slate-200 rounded-xl bg-white shadow-xs">
+          <div className="overflow-hidden border border-slate-200 rounded-2xl bg-white shadow-lg">
             <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200">
               {/* Do Column */}
-              <div className="p-6 bg-emerald-50/20">
-                <div className="flex items-center gap-2 mb-4 text-emerald-800 font-heading font-bold text-lg">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+              <div className="p-6 bg-emerald-50/50">
+                <div className="flex items-center gap-2 mb-4 text-emerald-950 font-heading font-bold text-lg">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-700" />
                   DO (Responsible Habits)
                 </div>
                 <div className="space-y-3">
                   {dosAndDonts.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-800 p-2.5 rounded-lg bg-white border border-emerald-100">
-                      <span className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
+                    <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-800 p-2.5 rounded-lg bg-white border border-slate-200 shadow-xs">
+                      <span className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-900 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5 border border-emerald-200">
                         ✓
                       </span>
                       <span>{item.do}</span>
@@ -331,15 +339,15 @@ export const AwarenessHub: React.FC = () => {
               </div>
 
               {/* Don't Column */}
-              <div className="p-6 bg-rose-50/20">
-                <div className="flex items-center gap-2 mb-4 text-rose-800 font-heading font-bold text-lg">
-                  <X className="w-5 h-5 text-rose-600" />
+              <div className="p-6 bg-rose-50/50">
+                <div className="flex items-center gap-2 mb-4 text-rose-950 font-heading font-bold text-lg">
+                  <X className="w-5 h-5 text-rose-700" />
                   DON'T (Common Pitfalls)
                 </div>
                 <div className="space-y-3">
                   {dosAndDonts.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-800 p-2.5 rounded-lg bg-white border border-rose-100">
-                      <span className="w-4 h-4 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
+                    <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-800 p-2.5 rounded-lg bg-white border border-slate-200 shadow-xs">
+                      <span className="w-4 h-4 rounded-full bg-rose-100 text-rose-900 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5 border border-rose-200">
                         ✗
                       </span>
                       <span>{item.dont}</span>
